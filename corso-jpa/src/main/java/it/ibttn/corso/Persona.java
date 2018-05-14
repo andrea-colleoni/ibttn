@@ -3,44 +3,35 @@ package it.ibttn.corso;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @Entity
 public class Persona {
-
+	
 	@Id
-//	@SequenceGenerator(name="b", sequenceName="REPARTO_COD_REP_SEQ")
-//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="b")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-
+	private String codiceFiscale;
+	
 	private String nome;
 	private String cognome;
 	private Date dataNascita;
 	private int altezza;
 	
-	@ManyToOne()
-	@JoinColumn(name="codice_rep", referencedColumnName="cod_rep")
+	@ManyToOne
+	@JoinColumn(name="reparto")
 	private Reparto reparto;
 	
-	public Reparto getReparto() {
-		return reparto;
-	}
-	public void setReparto(Reparto reparto) {
-		this.reparto = reparto;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	@Transient 
+	private Integer peso;
 	
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -65,7 +56,12 @@ public class Persona {
 	public void setAltezza(int altezza) {
 		this.altezza = altezza;
 	}
+	public Reparto getReparto() {
+		return reparto;
+	}
+	public void setReparto(Reparto reparto) {
+		this.reparto = reparto;
+	}
 	
-	
-	
+
 }

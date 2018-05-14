@@ -12,6 +12,7 @@ import org.eclipse.persistence.jpa.rs.PersistenceContext;
 import org.junit.Test;
 
 import it.ibttn.corso.Persona;
+import it.ibttn.corso.Reparto;
 
 public class PersistenceTest {
 
@@ -24,8 +25,13 @@ public class PersistenceTest {
 		p.setNome("Mario");
 		p.setCognome("Rossi");
 		
+		Reparto r = new Reparto();
+		r.setNome("Spedizioni");
+		
+
 		em.getTransaction().begin();
 		em.persist(p);
+		em.persist(r);
 		em.getTransaction().commit();
 		
 		assertTrue("funziona", true);
